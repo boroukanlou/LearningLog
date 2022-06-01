@@ -1,0 +1,19 @@
+{%block header%}{%endblock%}
+
+<button><a href="{% url 'Notes:home_page'%}">Home Page</a></button>
+<button><a href="{% url 'Notes:topics'%}">Topics</a></button>
+<button><a href="{% url 'Notes:new_topic'%}">New Topic</a></button>
+{% if user.is_authenticated %}
+    <button><a href="{% url 'users:logout'%}">Logout</a></button>
+    {% if user.username == 'shahin'%}
+        <p style="color: rgba(48, 21, 145, 0.856);">Hello, <b><a href="/admin">my lord {{user.username}}</a></b></p>
+    {% else %}
+        <p style="color: rgba(48, 21, 145, 0.856);">Hello <b>{{user.username}}</b></p>
+    {% endif %}
+    
+{% else %}
+    <button><a href="{% url 'users:login'%}">Login</a></button>
+    <button><a href="{% url 'users:register'%}">Register</a></button>
+{% endif %}
+
+{% block content%}{% endblock %}

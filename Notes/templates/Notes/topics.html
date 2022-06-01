@@ -1,0 +1,23 @@
+{% extends 'Notes/base.html' %}
+
+{%block header%}
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>topics</title>
+    </head>
+{%endblock%}
+
+{%block content%}
+    <body>
+    <ul>
+        {% for topic in topics%}
+            <li><h1><a href="{% url 'Notes:topic' topic.id %}" style="color: rgb(32, 17, 116);">{{ topic }}</a></h1></li>
+        {% empty %}
+            <li> There are no topics yet, you can add new topics by prees the button below.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'Notes:new_topic' %}"><button>Add New Topic</button></a>
+    </body>
+{% endblock %}

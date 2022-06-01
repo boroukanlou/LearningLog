@@ -1,0 +1,22 @@
+{% extends 'Notes/base.html' %}
+
+{% block header %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>edit entry</title>
+    </head>
+{% endblock %}
+
+{% block content %}
+<body>
+    <p><a href="{% url 'Notes:topic' topic.id %}">back to {{ topic }}</a></p>
+
+    <form action="{% url 'Notes:edit_entry' entry.id %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>save edites</button>
+    </form>
+</body>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'Notes/base.html'%}
+
+{% block header %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>register</title>
+    </head>
+{% endblock %}
+
+{% block content %}
+    <body>
+         <h1>create new Account</h1> 
+         <form action="{%url 'users:register'%}" method="post">
+             {% csrf_token %}
+             {{form.as_p}}
+         <button name="submit">Register</button>
+         <input type="hidden" name="next" value="{% url 'Notes:home_page'%}">
+        </form>
+    </body>
+{% endblock %}
