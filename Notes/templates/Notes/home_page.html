@@ -1,18 +1,18 @@
-{% extends 'Notes/base.html' %} 
+{% extends 'Notes/base.html' %} {%block page_header%}
+<div class="jumbotron">
+  <h1 class="display-3">Track your learning.</h1>
+  
+  <p class="lead">
+    Make your own learning log, and keep a list of the topics you`re learning
+    about. whenever you learn something new about a topic, make an entry
+    summarizing what you`ve learned.
+  </p>
 
-{%block header%}
-    <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>home</title>
-    </head>
+  <a
+    class="btn btn-lg btn-primary"
+    href="{% url 'users:register'%}"
+    role="button"
+    >Register &raquo;</a
+  >
+</div>
 {%endblock%}
-
-{%block content%}
-  <body>
-    <h1>This Is My Django Project</h1>
-    <p>we want go ahead with hamruyesh</p>
-  </body>
-{%endblock%}
-

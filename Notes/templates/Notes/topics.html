@@ -1,23 +1,19 @@
 {% extends 'Notes/base.html' %}
 
-{%block header%}
-    <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>topics</title>
-    </head>
+{%block page_header%}
+    <h1>Topics</h1>
 {%endblock%}
 
 {%block content%}
-    <body>
     <ul>
         {% for topic in topics%}
-            <li><h1><a href="{% url 'Notes:topic' topic.id %}" style="color: rgb(32, 17, 116);">{{ topic }}</a></h1></li>
+            <li><h2>
+                <a href="{% url 'Notes:topic' topic.id %}" style="color: rgb(32, 17, 116);">{{ topic }}</a>
+            </h2></li>
         {% empty %}
-            <li> There are no topics yet, you can add new topics by prees the button below.</li>
+            <li><h3>There are no topics yet, you can add new topics by prees the button below.</h3></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'Notes:new_topic' %}"><button>Add New Topic</button></a>
-    </body>
-{% endblock %}
+    <h4><a href="{% url 'Notes:new_topic' %}"><button class="btn btn-success">Add New Topic</button></a></h4>
+
+    {% endblock %}

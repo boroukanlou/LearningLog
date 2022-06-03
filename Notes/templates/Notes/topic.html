@@ -1,36 +1,29 @@
 {% extends 'Notes/base.html' %}
 
-{% block header %}
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>topic</title>
-    </head>
+{% block page_header %}
+    <h3>Topic : {{ topic }}</h3>
 {% endblock %}
 
 
 {% block content %}
-<body>
-
-    <h1>Topic : {{ topic }}</h1>
     <p>
-        <a href="{% url 'Notes:new_entry' topicId=topic.id %}" method="post"><button>Add New Entry</button></a>
+        <a href="{% url 'Notes:new_entry' topicId=topic.id %}" method="post"><button class="btn btn-success">Add New Entry</button></a>
     </p>
-   {% for entry in entries %}
-        <ul>
-            <li>
-                {{entry.text}} <br> {{entry.added_date}} <br>
-                <a href="{% url 'Notes:edit_entry' entry.id %}"><button name="submit">Edit Entry</button></a>
-            </li>
+    {% for entry in entries %}
+        <div class="card mb-3">
 
-        </ul>
+            <h5 class="card-header">
+                {{entry.added_date|date:'M d, Y H:i'}}
+                <small>
+                    <a href="{% url 'Notes:edit_entry' entry.id %}"><button name="submit" class="btn btn-info">Edit Entry</button></a>
+                </small>
+            </h5>
+
+            <div class="card-body">
+                {{ entry.text|linebreaks }}
+            </div>
+        </div>
     {% empty %}
-    <ul>
-        <li>there are no description here yet</li>
-    </ul>
-            
-   {% endfor %}
-
-</body>
+        <p>There are no description here yet</p>
+    {% endfor %}
 {% endblock %}

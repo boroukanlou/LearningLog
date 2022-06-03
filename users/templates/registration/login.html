@@ -1,26 +1,15 @@
-{% extends 'Notes/base.html'%}
-
-{% block header %}
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>login</title>
-    </head>
-{% endblock %}
+{% extends 'Notes/base.html'%} {% load bootstrap4%} {% block page_header %}
+<h2>Login to your account</h2>
+{% endblock %} 
 
 {% block content %}
-    <body>
-         <h1>Login to your Account</h1> 
-         {% if form.errors %}
-            <p style="color:red"><b>Your username and password didnt match, pleas try again.</b></p>
-         {% endif%}
-         <form action="{% url 'users:login'%}" method="post">
-             {% csrf_token%}
-             {{form.as_p}}
-             <button name="submit">login</button>
-             <input type="hidden" name="next" value="{% url 'Notes:home_page'%}">
-         </form>  
-         
-    </body>
+    <form action="{% url 'users:login'%}" method="post" class="from">
+    {% csrf_token%}
+    {% bootstrap_form form%}
+    {% buttons%}
+    <button name="submit" class="btn btn-primary">login</button>
+    {% endbuttons %}
+
+    <input type="hidden" name="next" value="{% url 'Notes:home_page'%}" />
+    </form>
 {% endblock %}

@@ -1,14 +1,11 @@
 {% extends 'Notes/base.html'%}
+{% load bootstrap4%}
 
-{% block header %}
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>logout</title>
-    </head>
+{% block page_header %}
+    <h2 class="card-header header-light bg-dark">You have been logged out</h2>
 {% endblock %}
 
 {% block content %}
-    <p>you have been logged out</p>
+    <p>you can login now, just click on the button below</p>
+    <a href="{% url 'users:login'%}"><button class="btn btn-info">login</button></a>
 {% endblock %}
