@@ -1,19 +1,74 @@
-{%block header%}{%endblock%}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,
+    shrink-to-fit=no"
+    />
 
-<button><a href="{% url 'Notes:home_page'%}">Home Page</a></button>
-<button><a href="{% url 'Notes:topics'%}">Topics</a></button>
-<button><a href="{% url 'Notes:new_topic'%}">New Topic</a></button>
-{% if user.is_authenticated %}
-    <button><a href="{% url 'users:logout'%}">Logout</a></button>
-    {% if user.username == 'shahin'%}
-        <p style="color: rgba(48, 21, 145, 0.856);">Hello, <b><a href="/admin">my lord {{user.username}}</a></b></p>
-    {% else %}
-        <p style="color: rgba(48, 21, 145, 0.856);">Hello <b>{{user.username}}</b></p>
-    {% endif %}
-    
-{% else %}
-    <button><a href="{% url 'users:login'%}">Login</a></button>
-    <button><a href="{% url 'users:register'%}">Register</a></button>
-{% endif %}
+    <title>Notebook</title>
 
-{% block content%}{% endblock %}
+    {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'Notes:home_page'%}">Notebook</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Notes:topics'%}">Topics</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+
+          <li class="nav-item">
+            <span class="navbar-text">Hello, {{ user.username }}.</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
+          </li>
+
+          {% else %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+          </li>
+
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <main role="main" class="container">
+      <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+      </div>
+
+      <div>{% block content %}{% endblock content %}</div>
+    </main>
+  </body>
+</html>
