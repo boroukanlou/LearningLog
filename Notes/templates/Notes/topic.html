@@ -1,18 +1,15 @@
 {% extends 'Notes/base.html' %}
 
 {% block page_header %}
-    <h3>Topic : {{ topic }}</h3>
+    <h2>Topic : {{ topic }}</h2>
 {% endblock %}
 
 
 {% block content %}
-    <p>
-        <a href="{% url 'Notes:new_entry' topicId=topic.id %}" method="post"><button class="btn btn-success">Add New Entry</button></a>
-    </p>
     {% for entry in entries %}
         <div class="card mb-3">
 
-            <h5 class="card-header">
+            <h5 class="card-header text-white bg-dark">
                 {{entry.added_date|date:'M d, Y H:i'}}
                 <small>
                     <a href="{% url 'Notes:edit_entry' entry.id %}"><button name="submit" class="btn btn-info">Edit Entry</button></a>
@@ -24,6 +21,10 @@
             </div>
         </div>
     {% empty %}
-        <p>There are no description here yet</p>
+        <h4 style="color: rgb(105, 221, 111);">There are no entry yet.</h4>
     {% endfor %}
+    <br>
+    <p>
+        <a href="{% url 'Notes:new_entry' topicId=topic.id %}" method="post"><button class="btn btn-success">Add New Entry</button></a>
+    </p>
 {% endblock %}

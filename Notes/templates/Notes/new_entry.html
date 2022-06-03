@@ -1,24 +1,34 @@
 {% extends 'Notes/base.html'%}
-
-{% block header%}
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>new entry</title>
-    </head>
+{% load bootstrap4%}
+{% block page_header%}
+<p>&larr; back to topic:<a href="{% url 'Notes:topic' topic.id %}"><b> {{ topic }}</b></a></p>
 {% endblock %}
 
 {% block content %}
-    <body>
-        <p><a href="{% url 'Notes:topic' topic.id %}">back to {{ topic }}</a></p>
-        <h3>Add a new entry:</h3>
-        <form action="{% url 'Notes:new_entry' topic.id %}" method="post">
-            {% csrf_token %}
-            {{form}}
-            <button>Add Entry</button>   
-        </form>
-        
-    </body>
-    
-{% endblock%}
+<section class="vh-100 bg-image"
+  style="background-image: url('https://images.unsplash.com/photo-1449156733864-dd5471bb7427?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); background-size: 100%;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">add the entry</h2>
+              <form action="{% url 'Notes:new_entry' topic.id %}" method="post" class="form">
+                {% csrf_token%}
+                {% bootstrap_form form%}
+                {% buttons%}
+                <button name="submit" class="btn btn-primary">Add Entry</button>
+                {% endbuttons %}
+                </form>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
