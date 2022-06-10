@@ -1,19 +1,35 @@
 {% extends 'Notes/base.html' %}
 
 {%block page_header%}
-    <h1>Topics</h1>
+    <h1>TOPICS</h1>
 {%endblock%}
 
-{%block content%}
-    <ul>
-        {% for topic in topics%}
-            <li><h2>
-                <a href="{% url 'Notes:topic' topic.id %}" style="color: rgb(32, 17, 116);">{{ topic }}</a>
-            </h2></li>
-        {% empty %}
-            <li><h3>There are no topics yet, you can add new topics by prees the button below.</h3></li>
-        {% endfor %}
-    </ul>
-    <h4><a href="{% url 'Notes:new_topic' %}"><button class="btn btn-success">Add New Topic</button></a></h4>
 
-    {% endblock %}
+{%block content%}
+<section class="vh-100 bg-image"
+style="background-image: url('https://images.unsplash.com/photo-1449156733864-dd5471bb7427?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); background-size: 100%;">
+<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <!-- <h2 class="text-uppercase text-center mb-5">topics</h2> -->
+            <ul>
+                {% for topic in topics%}
+                    <li><h2>
+                        <a href="{% url 'Notes:topic' topic.id %}" style="color: rgb(32, 17, 116);">{{ topic }}</a>
+                    </h2></li>
+                {% empty %}
+                    <li><h3>There are no topics yet, you can add new topics by prees the button below.</h3></li>
+                {% endfor %}
+            </ul>
+            <h4><a href="{% url 'Notes:new_topic' %}"><button class="btn btn-success">Add New Topic</button></a></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>   
+{% endblock %}
